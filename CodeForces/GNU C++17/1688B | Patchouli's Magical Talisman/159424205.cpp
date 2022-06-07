@@ -1,0 +1,32 @@
+#include "bits/stdc++.h"
+ 
+#pragma GCC optimize("Ofast")
+ 
+using namespace std;
+ 
+#define endl            "\n"
+#define all(v)          v.begin(), v.end()
+#define debug(x)        cout << #x << " is " << x << endl
+#define pow(n, m)       (int)powl(n, m)
+#define clr(x, value)    memset(x, value, sizeof(x))
+ 
+using ll = long long;
+ 
+int main() {
+    ios_base::sync_with_stdio(0), cin.tie(0);
+ 
+    int TC; cin >> TC;
+    while(TC--){
+        int n; cin >> n;
+        int a[n];
+        int mn = 1e9, even = 0;
+        for (int i = 0; i < n; ++i) {
+            int x; cin >> x;
+            even += x & 1 ^ 1;
+            mn = min(mn, __builtin_ffs(x) - 1);
+        }
+        if (mn == 0) cout << even << endl;
+        else cout << mn + n - 1 << endl;
+    }
+    return 0;
+}
