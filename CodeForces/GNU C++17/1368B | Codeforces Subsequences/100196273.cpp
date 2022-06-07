@@ -1,0 +1,51 @@
+#include "bits/stdc++.h"
+ 
+#pragma GCC optimize("Ofast")
+ 
+ 
+using namespace std;
+ 
+#define sc              scanf
+#define endl            "\n"
+#define sz(x)           (int) (x.size())
+#define all(v)          v.begin(), v.end()
+#define isOdd(n)        (n&1)
+#define pow(n, m)       (ll)powl(n, m)
+#define clr(x, val)     memset(x, val, sizeof(x))
+ 
+ 
+typedef long long ll;
+typedef long double ld;
+typedef vector<int> vi;
+typedef pair<ll, ll> pii;
+typedef tuple<int, int, int> tii;
+ 
+ 
+ll subCnt(vector<ll> &v){
+    ll s = 1;
+    for(auto &i: v)
+        s *= i;
+    return s;
+}
+int main()
+{
+    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+ 
+    ll n; cin >> n;
+ 
+    vector<ll> v(10, 1);
+ 
+    int i = 0;
+    while(subCnt(v) < n){
+        v[i]++;
+        i = (i + 1) % 10;
+    }
+    string s = "codeforces";
+ 
+//    for(auto &i: v) cout << i << " "; return 0;
+    for(int j = 0; j < 10; j++){
+        for(int k = 0; k < v[j]; k++)
+            cout << s[j];
+    }
+    return 0;
+}
