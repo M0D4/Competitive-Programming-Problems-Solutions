@@ -18,18 +18,37 @@ int main() {
 
     int n;
     cin >> n;
-    int pos[n] = {};
+
+    vector<string> a(n);
+
+    int x[n], y[n] = {};
     for (int i = 0; i < n; ++i) {
-        int x;
-        cin >> x;
-        pos[x] = i;
-    }
-    int f[n] = {};
-    for (int i = 0; i < n; ++i) {
-        for (int j = -1; j <= 1; ++j) {
-            f[(i + j - pos[i] + n) % n]++;
+        cin >> a[i];
+        x[i] = count(all(a[i]), 'X');
+        for (int j = 0; j < a[i].size(); ++j) {
+            if (a[i][j] == 'X') continue;
+            y[i] += a[i][j] - '0';
         }
     }
-    cout << *max_element(f, f + n);
+    vector<int> idx(n);
+    for (int i = 0; i < n; ++i) {
+        idx[i] = i;
+    }
+    sort(all(idx), [&](int& i, int& j){
+       return (1LL * x[i] * y[j] > 1LL * x[j] * y[i]);
+    });
+
+    ll cnt = 0;
+    ll xCnt = 0;
+    for (int i = 0; i < n; ++i) {
+        string s = a[idx[i]];
+        for (int j = 0; j < s.size(); ++j) {
+            if(s[j] == 'X') xCnt++;
+            else{
+                cnt += xCnt * (s[j] - '0');
+            }
+        }
+    }
+    cout << cnt;
     return 0;
 }
