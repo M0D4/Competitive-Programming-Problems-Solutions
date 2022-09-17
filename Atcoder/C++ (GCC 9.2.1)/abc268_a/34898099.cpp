@@ -1,8 +1,7 @@
 #include "bits/stdc++.h"
 
 #pragma GCC optimize("Ofast")
-
-using namespace std;
+#pragma GCC target("avx2")
 
 #define endl            "\n"
 #define all(v)          v.begin(), v.end()
@@ -10,23 +9,17 @@ using namespace std;
 #define pow(n, m)       (int)powl(n, m)
 #define clr(x, value)    memset(x, value, sizeof(x))
 
+using namespace std;
 using ll = long long;
+
 
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0);
 
-    int n, k; cin >> n >> k;
-    int a[n];
-    for (int i = 0; i < n; ++i) {
+    vector<int> a(5);
+    for (int i = 0; i < 5; ++i) {
         cin >> a[i];
     }
-    int mx = *max_element(a, a + n);
-    for (int i = 0; i < k; ++i) {
-        int x; cin >> x;
-        --x;
-        if(a[x] == mx)
-            return cout << "Yes", 0;
-    }
-    cout << "No";
+    cout << set<int>(all(a)).size();
     return 0;
 }
